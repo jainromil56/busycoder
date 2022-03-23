@@ -15,24 +15,15 @@ export default function Home() {
       </Head>
       {/* <Script src="/sc.js" strategy="lazyOnload"></Script> */}
 
-      <nav className={styles.mainnav}>
-        <ul>
-          <Link href='/'  scroll={false}>
-          <li>Home</li></Link>
-          <Link href='/about'>
-          <li>About</li></Link>
-          <Link href='/blog'>
-          <li>Blogs</li></Link>
-          <Link href='/contact'>
-          <li>Contact</li></Link>
-        </ul>
-      </nav>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
           Hunting <a href="#">Coder</a>
         </h1>
         
+      <div className={styles.imgwrap}>
+        <Image className={styles.codingimg} src="/codingimg.jpeg" width={250} height={166} srcSet='640vw'/>
+      </div>
 
         <p className={styles.description}>
           A blog for hunting coders by hunting coder
