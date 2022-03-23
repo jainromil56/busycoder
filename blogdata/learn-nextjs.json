@@ -1,6 +1,7 @@
 {
     "title":"How to learn NextJs",
     "content":"JavaScript is typically used as a client-side scripting language for front end development. In simple terms, this means that developers use JavaScript to build the part of a website that ordinary visitors can see and interact with, also known as the “front end.” While the programming language can technically be used to create complex programs, its primary application lies in web development.",
-    "author":"Techbootcamps"
+    "author":"Techbootcamps",
+    "slug":"learn-nextjs"
 
 }
