@@ -2,19 +2,11 @@ import React, {useEffect, useState } from 'react'
 import styles from '../styles/blog.module.css'
 import Link from 'next/link'
 
-const Blog = () => {
-  const [blogs, setBlogs] = useState([])
-  
+const Blog = (props) => {
+  const [blogs, setBlogs] = useState(props.allblogs)
+  console.log(props)
   //useEffect to fetch data and useState to save it 
-  useEffect(() => {
-    console.log("UseEffect is running")
-    fetch('http://localhost:3000/api/blogs').then((a) => {
-      return a.json();
-    }).then((parsed) =>{
-      console.log(parsed)
-      setBlogs(parsed)
-    })
-  },[])
+
   return (
     <div>
       <main className={styles.main}>
@@ -28,19 +20,18 @@ const Blog = () => {
             </div>
           );
         })}
-        <div className="blogs">
-          {/* <h2>Popular Blogs</h2> */}
-
-          {/* <div className={styles.blogItem}>
-            <Link href={"/blogpost/learn-javascript"}>
-              <h3>How to learn javascript in 2021?</h3>
-            </Link>
-            <p>Javascript is the language used to design logic for the web</p>
-          </div> */}
-        </div>
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let data = await fetch('http://localhost:3000/api/blogs')
+  let allblogs = await data.json()
+  
+  return {
+    props: {allblogs}, // will be passed to the page component as props
+  }
 }
 
 export default Blog
