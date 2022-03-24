@@ -1,10 +1,13 @@
 import Head from 'next/head'
+import { useState } from 'react'
 // import Image from 'next/image'
 // import Script from 'next/script'
 import styles from '../styles/Home.module.css'
-// import Link from 'next/link'
+import * as fs from 'fs'
+import Link from 'next/link'
 
-export default function Home() {
+export default function Home(props) {
+  const [blogs, setblogs] = useState(props.allblogs)
   return (
     <div className={styles.container}>
       <Head>
@@ -17,35 +20,35 @@ export default function Home() {
 
 
       <main className={styles.main}>
+        
+      <div className={styles.imgwrap}>
         <h1 className={styles.title}>
           Busy <a href="#">Coder</a>
         </h1>
-        
-      <div className={styles.imgwrap}>
-        <img className={styles.codingimg} src="/codingimg.jpeg" width={250} height={166} alt="Laptop image"/>
+        {/* <img className={styles.codingimg} src="/codingimg.jpeg" width="100%" height="auto" alt="Laptop image"/> */}
       </div>
 
         <p className={styles.description}>
           A blog for busy coders by busy coder
         </p>
 
-        <div className="blogs">
+        <div className={styles.blogs}>
           <h2>Popular Blogs</h2>
-          <div className="blogItem">
-            <h3>How to learn javascript in 2021?</h3>
-            <p>Javascript is the language used to design logic for the web</p>
-          </div>
-          <div className="blogItem">
-            <h3>How to learn javascript in 2021?</h3>
-            <p>Javascript is the language used to design logic for the web</p>
-          </div>
-          <div className="blogItem">
-            <h3>How to learn javascript in 2021?</h3>
-            <p>Javascript is the language used to design logic for the web</p>
-          </div>
-          <div className="blogItem">
-            <h3>How to learn javascript in 2021?</h3>
-            <p>Javascript is the language used to design logic for the web</p>
+
+          <div className={styles.blogcontainer}>
+          {blogs.map((blogitem) => {
+            return (
+              <div key={blogitem.slug} className={styles.blogItem}>
+                <Link href={`/blogpost/${blogitem.slug}`}>
+                  <h3>{blogitem.title}</h3>
+                </Link>
+                <p>{blogitem.metadesc.substr(0,90)}</p>
+                <Link href={`/blogpost/${blogitem.slug}`}>
+                  <button>Read More</button>
+                </Link>
+              </div>
+            );
+            })}
           </div>
         </div>
       </main>
@@ -55,4 +58,21 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+
+export async function getStaticProps(context) {
+  let data = await fs.promises.readdir("blogdata")
+  let myfile
+  let allblogs = []
+  for(let index=0; index<data.length; index++){
+    const item = data[index]
+    console.log(item)
+    myfile = await fs.promises.readFile(('blogdata/'+item), 'utf-8')
+    allblogs.push(JSON.parse(myfile))
+  }
+  
+  return {
+    props: {allblogs}, // will be passed to the page component as props
+  }
 }

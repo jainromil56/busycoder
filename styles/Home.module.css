@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
 .container {
   padding: 0;
+  font-family: 'Roboto',sans-serif;
 }
 
 .main {
   min-height: 100vh;
-  padding: 2rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -29,20 +31,16 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #3995ff;
   text-decoration: none;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
 
 .title {
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  color: #fff;
 }
 
 .title,
@@ -65,43 +63,6 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-}
-
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
 
 .logo {
   height: 1em;
@@ -114,6 +75,8 @@
     flex-direction: column;
   }
 }
+
+/* header */
 .mainnav ul{
   display: flex;
   text-decoration: none;
@@ -128,12 +91,56 @@
   z-index: 10;
 }
 .mainnav ul li{
+  font-size: 17px;
+  font-weight: 500;
   cursor: pointer;
   margin: 2rem 30px 2rem 0;
 }
-.codingimg{
-  border-radius: 10px;
+.mainnav ul li:hover{
+  color: #1A3AF4;
 }
+/* Header over */
 .imgwrap{
-  margin: 30px 0 0 0;
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../public/codingimg.jpeg');  ;
+  background-size: cover;
+  padding: 30px 0;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blogs{
+  width: 60%;
+}
+.blogcontainer{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+.blogItem{
+  /* border: 2px solid black; */
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin: 20px 20px 0 0;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.29);
+}
+.blogItem h3{
+  font-weight: 400;
+  font-size: 17px;
+}
+.blogItem p{
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.3rem;
+}
+.blogItem button{
+  padding: 10px 20px;
+  background-color: #1A3AF4;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.blogItem button:hover{
+  background-color: #132aaa;
 }
